@@ -9,6 +9,4 @@ The objective of this game is to write the **correct answer** to the displayed *
     - **🔥Imposible🔥**: Same rules as **Hard** but with **Two** digit number questions.  
   - Time limit of **30s**. 
 
-This was made with only pure **vanilla JavaScript**.  
-  
-If you are interested in working together, feel free to contact me! <mitri.dvp@gmail.com>  
+This was made with only pure **vanilla JavaScript**.
