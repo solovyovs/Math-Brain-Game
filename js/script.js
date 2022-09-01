@@ -39,12 +39,12 @@ class Game {
     gameOver.classList.add('game-over');
     gameOver.innerHTML = `
     <div class="enter-name">
-      <h2>GAME OVER</h2>
-      <h3>Enter your name!</h3>
+      <h2>КОНЕЦ ИГРЫ!</h2>
+      <h3>Введите свое имя:</h3>
       <input type="text">
       <div class='options'>
-        <h3 class="change">Change Difficulty</h3>
-        <h3 class="retry">Retry</h3>
+        <h3 class="change">Изменить сложность</h3>
+        <h3 class="retry">Еще раз</h3>
       </div>
     </div>`;
     document.body.appendChild(gameOver);
@@ -62,21 +62,21 @@ class Game {
       localStorage.setItem('leaderBoard', JSON.stringify(this.leaderBoard));
       gameOver.innerHTML = `
       <div class='leaderboard'>
-        <h1>Leader Board</h1>
+        <h1>Рейтинг</h1>
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Score</th>
-              <th>Speed</th>
+              <th>Имя</th>
+              <th>Счет</th>
+              <th>Скорость</th>
             </tr>
           </thead>
           <tbody>
           </tbody>
         </table>
         <div class='options'>
-          <h3 class="change">Change</h3>
-          <h3 class="retry">Retry</h3>
+          <h3 class="change">Изменить сложность</h3>
+          <h3 class="retry">Еще раз</h3>
         </div>
        </div>
        `;
@@ -135,7 +135,7 @@ class Game {
     this.disabled.disabled = true;
     this.result.value = a;
     this.answers.forEach((answer, i) => {
-      if (answer != this.disabled) {
+      if (answer !== this.disabled) {
         this.answer = answer;
         this.answerIndex = i;
       }
@@ -145,7 +145,7 @@ class Game {
 
   checkQuestion() {
     const disabledValue = parseFloat(this.disabled.value);
-    if (this.answerIndex == 0) {
+    if (this.answerIndex === 0) {
       switch (this.operator.innerHTML) {
         case '+':
           this.correctAnswer = this.result.value - disabledValue;
@@ -180,14 +180,14 @@ class Game {
           return '';
       }
     }
-    if (this.correctAnswer == Infinity) {
+    if (this.correctAnswer === Infinity) {
       this.resetValues();
       return;
     }
     if (hard) {
       form.style.visibility = 'visible';
       this.answer.focus();
-    } else if (this.correctAnswer < 0 || this.correctAnswer % 1 > 0 || this.correctAnswer == 0) {
+    } else if (this.correctAnswer < 0 || this.correctAnswer % 1 > 0 || this.correctAnswer === 0) {
       this.resetValues();
       return;
     }
@@ -208,15 +208,15 @@ class Game {
         child.disabled = true;
       }
     });
-    if (answerValue == this.correctAnswer) {
+    if (answerValue === this.correctAnswer) {
       correct_sfx.currentTime = 0
       correct_sfx.play()
       prevQuestion.classList.add('correct');
-      prevousQDiv.append(prevQuestion);
+      previousQDiv.append(prevQuestion);
       this.resetValues();
       this.ui.parentElement.classList.remove('wrong');
       this.ui.parentElement.classList.add('correct');
-      this.ui.innerHTML = 'Correct!';
+      this.ui.innerHTML = 'Правильно!';
       this.score++;
       this.scoreSpan.innerHTML = this.score;
       this.last.innerHTML = '';
@@ -224,16 +224,16 @@ class Game {
       wrong_sfx.currentTime = 0
       wrong_sfx.play()
       prevQuestion.classList.add('wrong');
-      prevousQDiv.append(prevQuestion);
+      previousQDiv.append(prevQuestion);
       this.resetValues();
       this.ui.parentElement.classList.remove('correct');
       this.ui.parentElement.classList.add('wrong');
-      this.ui.innerHTML = 'Wrong!';
-      this.last.innerHTML = `Correct answer was: ${this.correctAnswer}`;
+      this.ui.innerHTML = 'Неправильно!';
+      this.last.innerHTML = `Правильный ответ был: ${this.correctAnswer}`;
     }
-    [...prevousQDiv.children].forEach((child, i) => {
+    [...previousQDiv.children].forEach((child, i) => {
       if (i > 2) {
-        prevousQDiv.firstElementChild.remove();
+        previousQDiv.firstElementChild.remove();
       }
     });
   }
@@ -245,8 +245,8 @@ class Game {
     timer.textContent = 30;
     this.ui.parentElement.classList.remove('wrong');
     this.ui.parentElement.classList.remove('correct');
-    [...prevousQDiv.children].forEach(child => {
-      prevousQDiv.firstElementChild.remove();
+    [...previousQDiv.children].forEach(child => {
+      previousQDiv.firstElementChild.remove();
     });
   }
   changeDifficulty() {
@@ -275,11 +275,15 @@ const ui = document.querySelector('.ui-answer');
 const last = document.querySelector('.last-answer');
 const score = document.querySelector('.score span');
 const questionDiv = document.querySelector('.question');
-const prevousQDiv = document.querySelector('.previous-results');
+const previousQDiv = document.querySelector('.previous-results');
 const timer = document.querySelector('.timer');
 const help = document.querySelector('.help');
 const instructions = document.querySelector('.instructions');
 const exitInstructions = document.querySelector('.exit-instructions');
+
+//added variable to turn off sound
+const soundOff = document.querySelector('.sound_off');
+
 let limit = 10;
 let game;
 let hard = false;
@@ -316,31 +320,41 @@ function hideInstructions() {
   instructions.classList.add('hide')
 }
 
+//added function to turn off audio
+soundOff.addEventListener('click', turnSoundOff)
+function turnSoundOff() {
+  select_sfx.ended;
+  wrong_sfx.ended;
+  ding_sfx.ended;
+  correct_sfx.ended;
+}
+
+
 modal.addEventListener('click', e => {
   e.preventDefault();
   const selection = e.target.className;
   switch (selection) {
     case 'e':
-      operators = ['+', '-'];   
+      operators = ['+', '-'];
       hard = false;
-      limit = 10; 
+      limit = 10;
       break;
     case 'm':
-      operators = ['+', '-', 'x', '÷'];      
+      operators = ['+', '-', 'x', '÷'];
       hard = false;
-      limit = 10; 
+      limit = 10;
       break;
     case 'h':
-      operators = ['+', '-', 'x', '÷'];      
+      operators = ['+', '-', 'x', '÷'];
       hard = true;
-      limit = 10; 
+      limit = 10;
       break;
     case 'i':
-      operators = ['+', '-', 'x', '÷'];     
+      operators = ['+', '-', 'x', '÷'];
       hard = true;
-      limit = 99; 
+      limit = 99;
       break;
-  
+
     default:
       return
   }
