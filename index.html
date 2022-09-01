@@ -24,49 +24,54 @@
       <input type="submit" value="">
     </div>
     <div class="ui"><span class="ui-answer"></span><span class="last-answer"></span></div>
-    <div class="score">Score<span>0</span></div>
-    <div class="time">Time<span class="timer">30</span></div>
+    <div class="score">Счет<span>0</span></div>
+    <div class="time">Время<span class="timer">30</span></div>
+
+<!--    Added-->
+    <div class="btn_game">
+      <button class="pause_btn">Пауза</button>
+      <button class="back_menu">В меню</button>
+      <button class="sound_off">Выкл.звук</button>
+
+    </div>
+<!--    added-->
   </form>
 
   <form class="modal">
-    <div class="title"><span>Welcome to</span><h1>Brain Train</h1></div>
-    <div class="select">select difficulty:</div>
+    <div class="title"><h1>Тренировка счета</h1></div>
+    <div class="select">выбрать сложность:</div>
     <div class="buttons">
-      <button class="e">Easy</button>
-      <button class="m">Medium</button>
-      <button class="h">Hard</button>
-      <button class="i">🔥Impossible🔥</button>
+      <button class="e">Легкий</button>
+      <button class="m">Средний</button>
+      <button class="h">Сложный</button>
+      <button class="i">Невозможный</button>
     </div>
-    <div class="help">?</div>
+    <div class="help">Помощь</div>
   </form>
 
   <div class="instructions hide">
     <div class="instructions-card">
         <div class="easy">
-          <div class="icon">e</div>
-          <div>Questions with only <strong>Addition</strong> and <strong>Subtraction</strong> operators and <strong>One-Digit</strong> numbers will be displayed.</div>
+          <div class="icon">Л</div>
+          <div><strong>Легкий уровень сложности</strong> - только <strong>Сложение</strong> и <strong>Вычитание. </strong><strong>Однозначные цифры</strong> встретятся на этом уровне сложности.</div>
         </div>
       <div class="medium">
-        <div class="icon">m</div>
-        <div>Questions with all <strong>Arithmetic Operators</strong> and <strong>One-Digit</strong> numbers will be displayed.</div>
+        <div class="icon">Ср</div>
+        <div><strong>Средний уровень сложности</strong> - <strong>Сложение, Вычитание, Умножение и Деление. </strong><strong>Однозначные цифры</strong> встретятся на этом уровне сложности.</div>
       </div>
       <div class="hard">
-        <div class="icon">h</div>
-        <div>Same rules as <strong>Medium</strong> but the correct answer does not have a <strong>Range Limit</strong> (even negative numbers can be the answer).</div>
+        <div class="icon">Сл</div>
+        <div><strong>Сложный уровень сложности</strong> - те же правила, как на <strong>Среднем</strong> уровне сложности, но правильным ответом может быть даже отрицательное число.</div>
       </div>
       <div class="impossible">
-        <div class="icon">i</div>
-        <div>Same rules as <strong>Hard</strong> but with <strong>Two-Digit</strong> number questions.</div>
+        <div class="icon">Н</div>
+        <div><strong>Невозможный уровень сложности</strong> - те же правила, как на <strong>Сложном</strong> но с <strong>Двузначными числами</strong></div>
       </div>
-      <span class="exit-instructions">X</span>
+      <span class="exit-instructions">В МЕНЮ</span>
 
   </div>
   </div>
 
-  <a href="https://www.mitri-dvp.com/" class="powered-by">
-    <img src="./css/icon.svg" alt="mitri-dvp-icon" srcset="">
-    <p>mitri.dvp</p>
-  </a>
 
   <script src="./js/script.js"></script>
 </body>
